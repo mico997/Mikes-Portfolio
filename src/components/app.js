@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 
+import NavigationContainer from './navigation/navigation-container'
+
 import PortfolioContainer from './portfolio/portfolio-container'
 
 const todaysDate = moment().format('MMMM Do YYYY, h:mm:ss a')
@@ -18,6 +20,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="app">
+        <NavigationContainer />
         <h1>Mikes 2nd Portfolio</h1>
         <div>Today's Date : {todaysDate}</div>
         <div>
