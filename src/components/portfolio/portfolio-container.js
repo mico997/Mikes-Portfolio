@@ -9,10 +9,10 @@ export default class PortfolioContainer extends Component {
     this.state = {
       pageTitle: 'Welcome to my Portfolio',
       data: [
-        { title: 'Giant', category: 'Grocery' },
-        { title: 'Catalent', category: 'Biopharma' },
-        { title: 'Wholistic', category: 'Healthcare' },
-        { title: 'Verizon', category: 'Communications' },
+        { title: 'Giant', category: 'Grocery', slug: 'giant' },
+        { title: 'Catalent', category: 'Biopharma', slug: 'catalent' },
+        { title: 'Wholistic', category: 'Healthcare', slug: 'wholistic' },
+        { title: 'Verizon', category: 'Communications', slug: ' verizon' },
       ],
     }
 
@@ -30,14 +30,13 @@ export default class PortfolioContainer extends Component {
 
   portfolioItems() {
     return this.state.data.map((item) => {
-      return <PortfolioItem title={item.title} />
+      return <PortfolioItem title={item.title} url={'google.com'} slug={item.slug} />
     })
   }
 
   render() {
     return (
       <div>
-        <h2>{this.state.pageTitle}</h2>
 
         <button onClick={() => this.handleFilter('Grocery')}>Grocery</button>
         <button onClick={() => this.handleFilter('Biopharma')}>Biopharma</button>

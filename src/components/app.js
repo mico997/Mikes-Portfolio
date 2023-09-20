@@ -11,9 +11,10 @@ import {
 import NavigationContainer from "./navigation/navigation-container";
 import Home from "./pages/home";
 import About from "./pages/about-me";
-import PortfolioContainer from "./portfolio/portfolio-container";
 import Contact from './pages/contact';
 import Blog from './pages/blog';
+import PortfolioDetail from './portfolio/portfolio-detail';
+import NoMatch from './pages/no-match';
 
 
 
@@ -40,6 +41,13 @@ export default class App extends Component {
       <div className="app">
         <Router>
           <div>
+            <h1>Mikes 2nd Portfolio</h1>
+            <div>Today's Date : {todaysDate}</div>
+            <div>
+              I was born : {age} on a {birthdayDay} {birthday}
+            </div>
+
+            <div>The Day Started {dayLength}. What Have you accomplished Today</div>
             <NavigationContainer />
 
             <Switch>
@@ -47,20 +55,15 @@ export default class App extends Component {
               <Route path="/about-me" component={About} />
               <Route path="/contact" component={Contact} />
               <Route path="/blog" component={Blog} />
+              <Route path="/portfolio/:slug" component={PortfolioDetail} />
+              <Route component={NoMatch} />
             </Switch>
           </div>
         </Router>
 
 
-        <h1>Mikes 2nd Portfolio</h1>
-        <div>Today's Date : {todaysDate}</div>
-        <div>
-          I was born : {age} on a {birthdayDay} {birthday}
-        </div>
 
-        <div>The Day Started {dayLength}. What Have you accomplished Today</div>
 
-        <PortfolioContainer />
       </div>
     )
   }
