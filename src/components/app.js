@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import moment from 'moment'
+import React, { Component } from 'react';
+import moment from 'moment';
 import {
   BrowserRouter as Router,
   Switch,
@@ -34,6 +34,8 @@ const birthday = moment('19960121 10:30:08', 'YYYYMMDD h:mm:ss', true).format(
   'MMM Do YYYY',
 )
 const dayLength = moment().startOf('day').fromNow()
+
+
 export default class App extends Component {
   render() {
     return (
