@@ -17,6 +17,7 @@ export default class PortfolioContainer extends Component {
     }
 
     this.handleFilter = this.handleFilter.bind(this);
+    
   }
 
   handleFilter(filter) {
@@ -25,8 +26,30 @@ export default class PortfolioContainer extends Component {
         return item.category === filter;
       })
     });
+    // Testing loop function
+    // if (filter === 'RESET') {
+    //   this.getData();
+    // } else {this.getData(filter);}
+
+
 
   }
+
+  //Testing loop function
+  // getData(filter = null){
+  //     if(filter) {
+  //       this.state.data ; {
+  //       this.setState({
+  //         data: this.state.data.filter(item => {
+  //           return item.category === filter;
+  //       })})}
+  //     }else (
+        
+  //       this.setState({
+  //         data: this.state.data
+  //       })
+  //   )
+  // }
 
   portfolioItems() {
     return this.state.data.map((item) => {
@@ -42,6 +65,7 @@ export default class PortfolioContainer extends Component {
         <button onClick={() => this.handleFilter('Biopharma')}>Biopharma</button>
         <button onClick={() => this.handleFilter('Healthcare')}>Healthcare</button>
         <button onClick={() => this.handleFilter('Communications')}>Communications</button>
+        
 
         {this.portfolioItems()}
       </div>
