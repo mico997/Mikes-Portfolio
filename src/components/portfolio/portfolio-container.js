@@ -1,60 +1,51 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
+import axios from "axios";
 
-
-import PortfolioItem from './portfolio-item'
+import PortfolioItem from "./portfolio-item";
 
 export default class PortfolioContainer extends Component {
   constructor() {
-    super()
+    super();
 
     this.state = {
-      pageTitle: 'Welcome to my Portfolio',
+      pageTitle: "Welcome to my Portfolio",
       isLoading: false,
-      data: [
-        { title: 'Giant', category: 'Grocery', slug: 'giant' },
-        { title: 'Catalent', category: 'Biopharma', slug: 'catalent' },
-        { title: 'Wholistic', category: 'Healthcare', slug: 'wholistic' },
-        { title: 'Verizon', category: 'Communications', slug: ' verizon' },
-      ],
-    }
+      data: [],
+    };
 
     this.handleFilter = this.handleFilter.bind(this);
-    this.getPortfolioItems = this.getPortfolioItems.bind(this);
-
-    
   }
 
   handleFilter(filter) {
     this.setState({
-      data: this.state.data.filter(item => {
+      data: this.state.data.filter((item) => {
         return item.category === filter;
-      })
+      }),
     });
     // Testing loop function
     // if (filter === 'RESET') {
     //   this.getData();
     // } else {this.getData(filter);}
-
-
-
   }
 
   getPortfolioItems() {
-    axios.get('https://mikekwekam.devcamp.space/portfolio/portfolio_items')
-      .then(response => {
+    axios
+      .get("https://mikekwekam.devcamp.space/portfolio/portfolio_items")
+      .then((response) => {
         // handle success
         console.log("response data", response);
+        this.setState({
+          data: response.data.portfolio_items,
+        });
       })
-      .catch(error => {
+      .catch((error) => {
         // handle error
         console.log(error);
-      })
+      });
     // .finally(() => {
     //   // always executed
     // });
   }
- 
 
   //Testing loop function
   // getData(filter = null){
@@ -65,7 +56,7 @@ export default class PortfolioContainer extends Component {
   //           return item.category === filter;
   //       })})}
   //     }else (
-        
+
   //       this.setState({
   //         data: this.state.data
   //       })
@@ -74,8 +65,12 @@ export default class PortfolioContainer extends Component {
 
   portfolioItems() {
     return this.state.data.map((item) => {
-      return <PortfolioItem title={item.title} url={'google.com'} slug={item.slug} />
-    })
+      return <PortfolioItem key={item.id} item={item} />;
+    });
+  }
+
+  componentDidMount() {
+    this.getPortfolioItems();
   }
 
   render() {
@@ -83,19 +78,21 @@ export default class PortfolioContainer extends Component {
       return <div>Loading...</div>;
     }
 
-    this.getPortfolioItems();
-
     return (
       <div>
-
-        <button onClick={() => this.handleFilter('Grocery')}>Grocery</button>
-        <button onClick={() => this.handleFilter('Biopharma')}>Biopharma</button>
-        <button onClick={() => this.handleFilter('Healthcare')}>Healthcare</button>
-        <button onClick={() => this.handleFilter('Communications')}>Communications</button>
-        
+        <button onClick={() => this.handleFilter("Grocery")}>Grocery</button>
+        <button onClick={() => this.handleFilter("Biopharma")}>
+          Biopharma
+        </button>
+        <button onClick={() => this.handleFilter("Healthcare")}>
+          Healthcare
+        </button>
+        <button onClick={() => this.handleFilter("Communications")}>
+          Communications
+        </button>
 
         {this.portfolioItems()}
       </div>
-    )
+    );
   }
 }
